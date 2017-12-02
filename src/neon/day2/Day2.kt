@@ -1,4 +1,4 @@
-package neon.day1
+package neon.day2
 
 import java.io.File
 import kotlin.math.max
