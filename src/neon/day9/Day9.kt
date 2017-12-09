@@ -6,7 +6,6 @@ import kotlin.collections.ArrayList
 
 fun main(args: Array<String>) {
     val stream = File("inputfiles/day9.txt").readLines()[0].asSequence()
-    val groups: Deque<Char> = ArrayDeque<Char>()
     val scores: MutableList<Int> = ArrayList()
     var insideGarbage = false
     var ignoreNextChar = false
@@ -26,11 +25,9 @@ fun main(args: Array<String>) {
         } else { // not in garbage
             when (it) {
                 '{' -> {
-                    groups.add(it)
                     scores.add(++depth)
                 }
                 '}' -> {
-                    groups.pop()
                     depth--
                 }
                 '<' -> {
