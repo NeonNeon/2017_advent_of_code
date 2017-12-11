@@ -7,21 +7,25 @@ fun main(args: Array<String>) {
     val lengths = input.toCharArray().map { it.toInt() }.toMutableList()
     lengths.addAll(listOf(17, 31, 73, 47, 23))
 
-    lengths.forEach { print("$it, ") }
+    lengths.forEach { print("$it,") }
 
-    val hash = IntArray(256,{ x->x})
+    val sparseHash = IntArray(256,{ x->x})
     var currentIndex = 0
     var skip = 0
-    for (i in 1..64) {
+    for (i in 1 until 65) {
         lengths.forEach {
-            reverseSubLust(hash, currentIndex, it)
-            currentIndex = (currentIndex + it + skip) % hash.size
+            reverseSubLust(sparseHash, currentIndex, it)
+            currentIndex = (currentIndex + it + skip) % sparseHash.size
             skip += 1
         }
     }
+    println()
+    println("Sparsehash:")
+    sparseHash.forEach { print("$it,") }
+    println()
     val hexes = arrayListOf<String>()
     for (j in 1..16) {
-        val hexInt = hash.slice((j-1)*16 until j*16).fold(0)
+        val hexInt = sparseHash.slice((j-1)*16 until j*16).fold(0)
         {
             x, y -> x xor y
         }
