@@ -27,13 +27,13 @@ fun main(args: Array<String>) {
     println("There are ${superSet.size} number of groups")
 }
 
-fun expandGroup(zeroGroup: MutableSet<Int>, node: Int, edges: MutableMap<Int, MutableSet<Int>>) {
+fun expandGroup(group: MutableSet<Int>, node: Int, edges: MutableMap<Int, MutableSet<Int>>) {
     val examinedNodes = HashSet<Int>()
     val queue = ArrayDeque<Int>()
     queue.add(node)
     while(queue.isNotEmpty()) {
         val head = queue.pop()
-        zeroGroup.add(head)
+        group.add(head)
         if (!examinedNodes.contains(head)) {
             queue.addAll(edges.get(head)!!)
             examinedNodes.add(head)
